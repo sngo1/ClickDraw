@@ -9,6 +9,7 @@ console.log("canvas: ", canvas);
 var state = "circle"
 var lastX = -1;
 var lastY = -1;
+var lastShape = "circle";
 
 // Set the context for canvas actions
 ctx = canvas.getContext("2d");
@@ -56,11 +57,13 @@ var draw = function(e){
     console.log("Line drawn to ", e.offsetX, " " , e.offsetY);
     ctx.strokeStyle = "#FF0000";
     ctx.stroke();
-
-    if (state == "square"){
+ 
+    if (lastShape == "square"){
 	drawSquare(lastX,lastY);
+	lastShape = "circle";
     } else {
 	drawCircle(lastX,lastY);
+	lastShape = "square";
     }
     
     lastX = e.offsetX;
@@ -95,11 +98,13 @@ var changeShape = function(){
 	var tag = document.getElementById("state");
 	console.log("STATE TAG: ", tag);
 	console.log("Circle changed to square.");
+	lastShape = "circle";
     } else {
 	state = "circle";
 	var tag = document.getElementById("state");
 	console.log("STATE TAG: ", tag);
 	console.log("Square changed to circle.");
+	lastShape = "square";
     }
     return true
 }
