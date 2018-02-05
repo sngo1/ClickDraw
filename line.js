@@ -79,6 +79,9 @@ var draw = function(e){
 
 // Draw a white rectangle over the canvas to clear it.
 var clearCanvas = function(){
+    ctx.beginPath();
+    lastX = -1;
+    lastY = -1;
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0,0,600,600);
     console.log("Canvas cleared.");
