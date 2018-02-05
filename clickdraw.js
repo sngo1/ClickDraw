@@ -1,36 +1,41 @@
 var canvas = document.getElementById("slate");
 console.log("canvas: ", canvas);
-var state = "Circle"
+var state = "circle"
 
 ctx = canvas.getContext("2d");
 
-var draw = function(){
-    ctx.fillStyle = "#ff0000";
-    ctx.fillRect(50,50,800,200)
-    ctx.fillStyle = "#f34566";
-    ctx.fillRect(150,70,80,200)
-    //code for drawing a rectangle
-    console.log("Drew a rectangle")
+var drawCircle = function(x,y){
+    console.log("X: ", x);
+    console.log("Y: ", y);
+   
+    ctx.beginPath();
+    ctx.arc(x, y, 10, 0, 2 * Math.PI);
+    ctx.fillStyle = "hotpink"
+    ctx.fill()
+    console.log("Drew a circle.")
     return true
 }
 
-var drawCircle = function(e){
-    console.log("X: ", e.offsetX);
-    console.log("Y: ", e.offsetY);
-    ctx.fillStyle = "#ff0000";
-    ctx.fillRect(50,50,800,200)
-    ctx.fillStyle = "#f34566";
-    ctx.fillRect(150,70,80,200)
-    //code for drawing a rectangle
-    console.log("Drew a rectangle")
+var drawSquare = function(x,y){
+    console.log("X: ", x);
+    console.log("Y: ", y);
+
+    var side = 20;
+    var half = side/2;
+    ctx.beginPath();
+    ctx.fillStyle = "green";
+    ctx.fillRect(x - half, y - half, side, side);
+    console.log("Drew a square.")
     return true
 }
 
-var draw = function(){
+var draw = function(e){
+    var x = e.offsetX;
+    var y = e.offsetY;
     if (state == "square"){
-	drawCircle();
+	drawSquare(x,y);
     } else {
-	drawCircle();
+	drawCircle(x,y);
     }
     return true;
 }
@@ -57,7 +62,7 @@ var changeShape = function(){
     return true
 }
 
-canvas.addEventListener('click', drawCircle);
+canvas.addEventListener('click', draw);
 var toggle = document.getElementById("toggle");
 console.log("toggle: ", toggle);
 toggle.addEventListener('click', changeShape);
