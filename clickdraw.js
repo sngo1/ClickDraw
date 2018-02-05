@@ -1,9 +1,18 @@
+// Samantha Ngo
+// Workshop 2 - Canvas
+// Softdev - pd7
+// 2017-02-04
+
+// Access canvas for actions
 var canvas = document.getElementById("slate");
 console.log("canvas: ", canvas);
 var state = "circle"
 
+// Set the context for canvas actions
 ctx = canvas.getContext("2d");
 
+// Given the coordinates relative to the canvas upper left corner, draw a circle
+// at that location.
 var drawCircle = function(x,y){
     console.log("X: ", x);
     console.log("Y: ", y);
@@ -16,6 +25,8 @@ var drawCircle = function(x,y){
     return true
 }
 
+// Given the coordinates relative to the canvas upper left corner, draw a square
+// centered at that location.
 var drawSquare = function(x,y){
     console.log("X: ", x);
     console.log("Y: ", y);
@@ -29,6 +40,8 @@ var drawSquare = function(x,y){
     return true
 }
 
+// Based on the global state variable, decide whether to draw a circle or a
+// square and call that function accordingly.
 var draw = function(e){
     var x = e.offsetX;
     var y = e.offsetY;
@@ -40,6 +53,7 @@ var draw = function(e){
     return true;
 }
 
+// Draw a white rectangle over the canvas to clear it.
 var clearCanvas = function(){
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0,0,600,600);
@@ -47,6 +61,7 @@ var clearCanvas = function(){
     return true
 }
 
+// Change the state variable to other shape when toggle is pressed
 var changeShape = function(){
     if (state == "circle"){
 	state = "square";
@@ -62,6 +77,7 @@ var changeShape = function(){
     return true
 }
 
+// Listen for user clicks
 canvas.addEventListener('click', draw);
 var toggle = document.getElementById("toggle");
 console.log("toggle: ", toggle);
@@ -70,24 +86,3 @@ var clear = document.getElementById("clear");
 console.log("clear: ", clear);
 clear.addEventListener('click', clearCanvas);
 
-
-/*
-var ctx = c.getContext("2d");
-console.log(ctx);
-
-// Draw Rectangles
-ctx.fillStyle = "#ff0000";
-ctx.fillRect(50,50,800,200)
-ctx.fillStyle = "#f34566";
-ctx.fillRect(150,70,80,200)
-*/
-
-/*
-// Initial Setup
-// 1. Activate event listener for the button
-var b = document.getElementById("b");
-console.log("b:", b);
-b.addEventListener('click', buttonCallBack);
-// 2. Activate responses for each of the initial items in the list
-activate();
-*/
