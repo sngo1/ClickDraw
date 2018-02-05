@@ -56,6 +56,13 @@ var draw = function(e){
     console.log("Line drawn to ", e.offsetX, " " , e.offsetY);
     ctx.strokeStyle = "#FF0000";
     ctx.stroke();
+
+    if (state == "square"){
+	drawSquare(lastX,lastY);
+    } else {
+	drawCircle(lastX,lastY);
+    }
+    
     lastX = e.offsetX;
     lastY = e.offsetY;
 
