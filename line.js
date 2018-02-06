@@ -44,7 +44,7 @@ var drawSquare = function(x,y){
 }
 
 // Based on the global state variable, decide whether to draw a circle or a
-// square and call that function accordingly.
+// square, connect the new point to the last point, and then draw the shape.
 var draw = function(e){
     if (lastX == -1) {
 	lastX = e.offsetX;
@@ -60,10 +60,8 @@ var draw = function(e){
  
     if (lastShape == "square"){
 	drawSquare(lastX,lastY);
-	lastShape = "circle";
     } else {
 	drawCircle(lastX,lastY);
-	lastShape = "square";
     }
     
     lastX = e.offsetX;
@@ -73,8 +71,10 @@ var draw = function(e){
     var y = e.offsetY;
     if (state == "square"){
 	drawSquare(x,y);
+	lastShape = "square";
     } else {
 	drawCircle(x,y);
+	lastShape = "circle"
     }
     
     return true;
