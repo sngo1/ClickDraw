@@ -60,8 +60,11 @@ var draw = function(e){
  
     if (lastShape == "square"){
 	drawSquare(lastX,lastY);
+	lastShape = "circle"
+
     } else {
 	drawCircle(lastX,lastY);
+	lastShape = "square";
     }
     
     lastX = e.offsetX;
